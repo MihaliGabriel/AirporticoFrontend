@@ -5,7 +5,7 @@ import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-change-password',
-  templateUrl: './changePassword.component.html',
+  templateUrl: './changepassword.component.html',
   styleUrls: ['changepassword.component.css']
 })
 export class ChangePasswordComponent {
