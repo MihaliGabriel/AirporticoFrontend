@@ -9,7 +9,7 @@ import { PostConfiguration } from '../post-configuration';
 export class PostService {
     protected defaultHeaders = new HttpHeaders();
     protected configuration = new PostConfiguration();
-    protected basePath = 'http://localhost:8080';
+    protected basePath = 'https://airporticobackend.azurewebsites.net';
 
     constructor(private http: HttpClient) {
     }
