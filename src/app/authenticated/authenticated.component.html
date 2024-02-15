@@ -1,0 +1,28 @@
+<div class="header-banner">
+  <app-navbar (navbarEvent)="onLanguageChange()"></app-navbar>
+  <div class="p-5">
+    <div class="navbar" id="navbarResponsive">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+        </li>
+      </ul>
+    </div>
+    <div *ngIf ="isUser" class="cheapest-flights-label">
+      <label>{{ 'authentication.cheapestFlightsLabel' | translate }}</label>
+    </div>
+    <ngb-carousel *ngIf="cheapestFlights && cheapestFlights.length && isUser">
+      <ng-template ngbSlide *ngFor="let flight of cheapestFlights">
+        <div class="carousel-image" style="background-image: url('/assets/homepage2.jpeg'); height: 200px;">
+          <div class="carousel-caption">
+            <h3>{{ flight.name }}</h3>
+            <p>{{ flight.departureCity }} {{ 'authentication.toLabel' | translate }} {{ flight.arrivalCity }}</p>
+            <p>{{ 'authentication.bookFlightButton' | translate }}: ${{ flight.economyPrice }}</p>
+            <button class="btn btn-sm btn-warning" (click)="bookFlight(flight)">
+              {{ 'authentication.bookFlightButton' | translate }}
+            </button>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</div>

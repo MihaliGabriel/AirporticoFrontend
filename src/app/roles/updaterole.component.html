@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>{{'updateRole.title' | translate}}</h2>
+<mat-dialog-content>
+  <form [formGroup]="updateForm">
+    <mat-form-field>
+        <input matInput formControlName="id" placeholder="{{'updateRole.idLabel' | translate}}" readonly>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="name" placeholder="{{'updateRole.nameLabel' | translate}}">
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">{{'actions.cancelButton' | translate}}</button>
+  <button mat-button (click)="onSave()">{{'actions.saveButton' | translate}}</button>
+</mat-dialog-actions>

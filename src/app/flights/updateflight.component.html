@@ -1,0 +1,73 @@
+<h2 mat-dialog-title>{{ 'updateFlight.title' | translate }}</h2>
+<mat-dialog-content>
+  <form [formGroup]="updateForm">
+    <mat-form-field>
+      <mat-label>{{ 'updateFlight.idLabel' | translate }}</mat-label>
+      <input matInput formControlName="id" placeholder="{{ 'updateFlight.idLabel' | translate }}" readonly>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{ 'updateFlight.businessSeatsLabel' | translate }}</mat-label>
+      <input matInput formControlName="businessSeats" placeholder="{{ 'updateFlight.businessSeatsLabel' | translate }}">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{ 'updateFlight.economySeatsLabel' | translate }}</mat-label>
+      <input matInput formControlName="economySeats" placeholder="{{ 'updateFlight.economySeatsLabel' | translate }}">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{ 'updateFlight.firstClassSeatsLabel' | translate }}</mat-label>
+      <input matInput formControlName="firstClassSeats" placeholder="{{ 'updateFlight.firstClassSeatsLabel' | translate }}">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{ 'updateFlight.departureDateLabel' | translate }}</mat-label>
+      <input matInput formControlName="departureDate" placeholder="{{ 'updateFlight.departureDateLabel' | translate }}" type="datetime-local">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{ 'updateFlight.arrivalDateLabel' | translate }}</mat-label>
+      <input matInput formControlName="arrivalDate" placeholder="{{ 'updateFlight.arrivalDateLabel' | translate }}" type="datetime-local">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{ 'updateFlight.routeLabel' | translate }}</mat-label>
+      <mat-select formControlName="routeId">
+        <mat-option *ngFor="let route of routes" [value]="route.id">
+          {{ route.routeName | translate }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{ 'updateFlight.companyLabel' | translate }}</mat-label>
+      <mat-select formControlName="companyId">
+        <mat-option *ngFor="let company of companies" [value]="company.id">
+          {{ company.companyName | translate }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{ 'updateFlight.businessPriceLabel' | translate }}</mat-label>
+      <input matInput formControlName="businessPrice" placeholder="{{ 'updateFlight.businessPriceLabel' | translate }}">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{ 'updateFlight.economyPriceLabel' | translate }}</mat-label>
+      <input matInput formControlName="economyPrice" placeholder="{{ 'updateFlight.economyPriceLabel' | translate }}">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{ 'updateFlight.firstClassPriceLabel' | translate }}</mat-label>
+      <input matInput formControlName="firstClassPrice" placeholder="{{ 'updateFlight.firstClassPriceLabel' | translate }}">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{ 'updateFlight.remainingEconomySeatsLabel' | translate }}</mat-label>
+      <input matInput formControlName="remainingEconomySeats" placeholder="{{ 'updateFlight.remainingEconomySeatsLabel' | translate }}">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{ 'updateFlight.remainingBusinessSeatsLabel' | translate }}</mat-label>
+      <input matInput formControlName="remainingBusinessSeats" placeholder="{{ 'updateFlight.remainingBusinessSeatsLabel' | translate }}">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{ 'updateFlight.remainingFirstClassSeatsLabel' | translate }}</mat-label>
+      <input matInput formControlName="remainingFirstClassSeats" placeholder="{{ 'updateFlight.remainingFirstClassSeatsLabel' | translate }}">
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">{{'actions.cancelButton' | translate}}</button>
+  <button mat-button (click)="onSave()">{{'actions.saveButton' | translate}}</button>
+</mat-dialog-actions>

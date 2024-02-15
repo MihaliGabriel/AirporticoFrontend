@@ -1,0 +1,54 @@
+<app-navbar></app-navbar>
+<div class="p-4">
+    <div class="container">
+        <h1>{{ 'tickets.navbarTitle' | translate }}</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 10%">{{ 'tickets.tableHeaders.ticketName' | translate }}</th>
+                    <th style="width: 35%">{{ 'tickets.tableHeaders.flight' | translate }}</th>
+                    <th style="width: 35%">{{ 'tickets.tableHeaders.ticketType' | translate }}</th>
+                    <th style="width: 20%">{{ 'tickets.tableHeaders.price' | translate }}</th>
+                    <th style="width: 10%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ticket of tickets">
+                    <td>{{ ticket.ticketName }}</td>
+                    <td>{{ ticket.flightName }}</td>
+                    <td>{{ ticket.ticketType }}</td>
+                    <td>{{ ticket.price }}</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning" (click)="seePassengers(ticket)">{{ 'tickets.buttonLabels.seePassengers' | translate }}</button>
+                    </td>
+                </tr>
+                <tr *ngIf="!tickets">
+                    <td colspan="4" class="text-center">
+                        <span class="spinner-border spinner-border-lg align-center"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf="selectedTicket">
+            <h2>{{ 'tickets.passengersTitle' | translate: { ticketName: selectedTicket.ticketName } }}</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>{{ 'tickets.tableHeaders.firstName' | translate }}</th>
+                        <th>{{ 'tickets.tableHeaders.lastName' | translate }}</th>
+                        <th>{{ 'tickets.tableHeaders.email' | translate }}</th>
+                        <th>{{ 'tickets.tableHeaders.phoneNumber' | translate }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let passenger of passengers">
+                        <td>{{ passenger.firstName }}</td>
+                        <td>{{ passenger.lastName }}</td>
+                        <td>{{ passenger.email }}</td>
+                        <td>{{ passenger.phoneNumber }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

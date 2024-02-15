@@ -1,0 +1,6 @@
+.p-4{
+    background-image: url('/assets/homepage.jpeg');
+    background-size: cover;
+    background-position: center center; 
+    min-height: 100vh;
+}

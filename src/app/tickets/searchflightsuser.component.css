@@ -1,0 +1,107 @@
+/* Apply styles to prevent layout shift */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Make sure your main container takes the full width and height */
+.p-4 {
+  background-image: url('/assets/homepage.jpeg');
+  background-size: cover;
+  background-position: center center; 
+  min-height: 100vh;
+  padding: 0 !important;
+  width: 100%;
+  height: 100%;
+  box-sizing: content-box;
+}
+
+.form-searchflight {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+/* Style the mat-form-field */
+mat-form-field {
+  width: 100%;
+  color: rgb(77, 76, 76);
+}
+
+/* Style the input within mat-form-field */
+mat-form-field input {
+  height: 32px;
+  color: rgb(118, 116, 116);
+}
+
+/* Adjust the appearance of mat-select */
+mat-select {
+  width: 100%;
+}
+
+/* Adjust the appearance of mat-datepicker */
+mat-datepicker-toggle {
+  display: block;
+}
+
+/* Reserve space for error messages even when hidden */
+mat-error {
+  display: inline-block;
+  font-size: 0.8rem;
+  color: red;
+  height: 1rem;
+  margin-top: 0.2rem;
+}
+
+/* Style the buttons */
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+s {
+  color: red;
+  margin-right: 10px;
+}
+
+.content-wrapper {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.flight-filters {
+  margin-top: 60px;
+  flex: 0 0 auto; /* This ensures that the flight-filters div doesn't grow or shrink but stays the same size based on its content. */
+  margin-right: 2rem; /* This will give a space between the flight filters and the flights table. */
+}
+
+.flights-area {
+  flex: 1; /* This ensures the flights table takes up the remaining space. */
+}

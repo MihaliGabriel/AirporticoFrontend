@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>{{'updateAirport.title' | translate}}</h2>
+<mat-dialog-content>
+  <form [formGroup]="updateForm">
+    <mat-form-field>
+        <input matInput formControlName="id" placeholder="{{'updateAirport.idLabel' | translate}}" readonly>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="name" placeholder="{{'updateAirport.nameLabel' | translate}}">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{'updateAirport.locationLabel' | translate}}</mat-label>
+      <mat-select formControlName="city">
+          <mat-option *ngFor="let location of locations" [value]="location.city">
+            {{ location.city }}
+          </mat-option>
+      </mat-select>
+  </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">{{'actions.cancelButton' | translate}}</button>
+  <button mat-button (click)="onSave()">{{'actions.saveButton' | translate}}</button>
+</mat-dialog-actions>

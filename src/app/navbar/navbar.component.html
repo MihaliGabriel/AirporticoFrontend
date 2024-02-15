@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand custom-navbar w-100" *ngIf="isUserLoggedIn">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/authenticated">Home</a> 
+      <ng-container *ngIf="isAdmin">
+        <a class="nav-item nav-link" routerLink="/roles">{{'general.rolesnavbar' | translate}}</a>
+        <a class="nav-item nav-link" routerLink="/users">{{'general.usersnavbar' | translate}}</a>
+        <a class="nav-item nav-link" routerLink="/locations">{{'general.locationsnavbar' | translate}}</a>
+        <a class="nav-item nav-link" routerLink="/airports">{{'general.airportsnavbar' | translate}}</a>
+        <a class="nav-item nav-link" routerLink="/routes">{{'general.routesnavbar' | translate}}</a>
+        <a class="nav-item nav-link" routerLink="/companies">{{'general.companiesnavbar' | translate}}</a>
+        <a class="nav-item nav-link" routerLink="/flights">{{'general.flightsnavbar' | translate}}</a>
+        <a class="nav-item nav-link" routerLink="/airplanes">{{'general.airplanesnavbar' | translate}}</a>
+        
+      </ng-container>
+      <ng-container *ngIf="isUser">
+        <a class="nav-item nav-link" routerLink="/searchflightsuser">{{'general.buyticketnavbar' | translate}}</a>
+        <a class="nav-item nav-link" routerLink="/ticketsforuser">{{'general.yourticketsnavbar' | translate}}</a>
+        <a class="nav-item nav-link" routerLink="/profile">{{'general.profilenavbar' | translate}}</a>
+      </ng-container> 
+      <a class="nav-item nav-link" routerLink="/auth/changepassword">{{'general.changepasswordnavbar' | translate}}</a>
+      <a class="nav-item nav-link" routerLink="/auth/register">{{'general.registernavbar' | translate}}</a>
+      <a class="nav-item nav-link custom-link" routerLink="" (click)="logout()">{{'general.logoutnavbar' | translate}}</a>
+    </div>
+    <div class = "language-select">
+      <label for="languageSelect">{{'general.selectlanguagenavbar' | translate}} </label>
+      <select id="languageSelect" [(ngModel)]="selectedLanguage" (change)="onLanguageChange()">
+        <option *ngFor="let language of supportedLanguages" [value]="language.code">{{ language.name }}</option>
+      </select>
+    </div>
+  </nav>

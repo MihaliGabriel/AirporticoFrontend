@@ -1,0 +1,10 @@
+.p-4 {
+  background-image: url('/assets/homepage1.jpeg');
+  background-size: cover;
+  background-position: center center; 
+  height: 100vh;
+}
+s {
+    color: red;
+    margin-right: 10px;
+  }

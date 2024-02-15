@@ -1,0 +1,145 @@
+<app-navbar></app-navbar>
+<div class="p-4">
+    <div class="container">
+        <h1>{{ 'flights.title' | translate }}</h1>
+        <mat-error>{{ nameNotUniqueMessage }}</mat-error>
+        <form [formGroup]="flightForm" (ngSubmit)="addFlight(flightForm.value)" class="form-addflight">
+            <mat-form-field>
+                <mat-label>{{ 'flights.departureDateLabel' | translate }}</mat-label>
+                <input matInput formControlName="departureDate"
+                    placeholder="{{ 'flights.departureDateLabel' | translate }}" type="datetime-local">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>{{ 'flights.arrivalDateLabel' | translate }}</mat-label>
+                <input matInput type="datetime-local" formControlName="arrivalDate"
+                    placeholder="{{ 'flights.arrivalDateLabel' | translate }}">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>{{ 'flights.routeLabel' | translate }}</mat-label>
+                <mat-select formControlName="routeId">
+                    <mat-option *ngFor="let route of routes" [value]="route.id">
+                        {{ route.routeName | translate }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>{{ 'flights.companyLabel' | translate }}</mat-label>
+                <mat-select formControlName="companyId">
+                    <mat-option *ngFor="let company of companies" [value]="company.id">
+                        {{ company.companyName | translate }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>{{ 'flights.businessPriceLabel' | translate }}</mat-label>
+                <input matInput formControlName="businessPrice"
+                    placeholder="{{ 'flights.businessPriceLabel' | translate }}">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>{{ 'flights.economyPriceLabel' | translate }}</mat-label>
+                <input matInput formControlName="economyPrice"
+                    placeholder="{{ 'flights.economyPriceLabel' | translate }}">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>{{ 'flights.firstClassPriceLabel' | translate }}</mat-label>
+                <input matInput formControlName="firstClassPrice"
+                    placeholder="{{ 'flights.firstClassPriceLabel' | translate }}">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>{{ 'flights.airplaneSelect' | translate }}</mat-label>
+                <mat-select formControlName="airplaneName">
+                  <mat-option *ngFor="let airplane of airplanes" [value]="airplane.name">
+                    {{ airplane.name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            <button class="btn btn-sm btn-primary btn-block" type="submit">{{ 'flights.addFlightButton' | translate
+                }}</button>
+            <button class="btn btn-sm btn-primary btn-block" type="button" (click)="exportFlightsToPdf()">{{
+                'flights.exportToPdfButton' | translate }}</button>
+            <button class="btn btn-sm btn-primary btn-block" type="button" (click)="exportFlightsToExcel()">{{
+                'flights.exportToExcelButton' | translate }}</button>
+            <button class="btn btn-sm btn-primary btn-block" type="button" (click)="importFlightsFromExcel()">{{
+                'flights.importFromExcelButton' | translate }}</button>
+        </form>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 5%">{{ 'searchFlights.tableHeaders.flights' | translate }}</th>
+                    <th style="width: 15%">{{ 'flights.tableHeaders.name' | translate }}</th>
+                    <th style="width: 10%">{{ 'flights.tableHeaders.departureCity' | translate }}</th>
+                    <th style="width: 10%">{{ 'flights.tableHeaders.arrivalCity' | translate }}</th>
+                    <th style="width: 10%">{{ 'flights.tableHeaders.economyPrice' | translate }}</th>
+                    <th style="width: 10%">{{ 'flights.tableHeaders.firstClassPrice' | translate }}</th>
+                    <th style="width: 10%">{{ 'flights.tableHeaders.businessPrice' | translate }}</th>
+                    <th style="width: 5%">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let flight of flights">
+                    <!-- Simplified Row -->
+                    <tr>
+                        <td><img src="assets/airplane.png" alt="Icon" style="width: 50px; height: 50px;" />
+                        </td>
+                        <td>{{flight.name}}</td>
+                        <td>{{flight.departureCity}}</td>
+                        <td>{{flight.arrivalCity}}</td>
+                        <td><s *ngIf="flight.discountPercentage > 0">{{ flight.businessPrice }}</s>{{
+                            flight.discountedBusinessPrice }}
+                        </td>
+                        <td><s *ngIf="flight.discountPercentage > 0">{{ flight.economyPrice }}</s>{{
+                            flight.discountedEconomyPrice }}
+                        </td>
+                        <td><s *ngIf="flight.discountPercentage > 0">{{ flight.firstClassPrice }}</s>{{
+                            flight.discountedFirstClassPrice }}
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn-primary" (click)="toggleDetails(flight)">
+                                {{flight.isExpanded ? 'Hide Details' : 'See Details'}}
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr *ngIf="flight.isExpanded" [@expandDetail]="flight.isExpanded ? 'expanded' : 'collapsed'">
+                        <td colspan="8">
+                            <div class="d-flex justify-content-between">
+                                <span><strong>{{ 'flights.tableHeaders.routeName' | translate }}: </strong>{{flight.routeName}}</span>
+                                <span><strong>{{ 'flights.tableHeaders.companyName' | translate }}: </strong>{{flight.companyName}}</span>
+                                <span><strong>{{ 'flights.tableHeaders.remainingBusinessSeats' | translate }}: </strong>{{flight.businessSeats}}</span>
+                                <span><strong>{{ 'flights.tableHeaders.remainingEconomySeats' | translate }}: </strong>{{flight.economySeats}}</span>
+                                <span><strong>{{ 'flights.tableHeaders.remainingFirstClassSeats' | translate }}: </strong>{{flight.firstClassSeats}}</span>
+                                <span><strong>{{ 'flights.tableHeaders.businessPrice' | translate }}: </strong>{{flight.businessPrice}}</span>
+                                <span><strong>{{ 'flights.tableHeaders.firstClassPrice' | translate }}: </strong>{{flight.firstClassPrice}}</span>
+                                <span><strong>{{ 'flights.tableHeaders.economyPrice' | translate }}: </strong>{{flight.economyPrice}}</span>
+                                <span><strong>{{ 'flights.tableHeaders.departureDate' | translate }}: </strong>{{flight.departureDate}}</span>
+                                <span><strong>{{ 'flights.tableHeaders.arrivalDate' | translate }}: </strong>{{flight.arrivalDate}}</span>
+                                <span><strong>{{ 'flights.tableHeaders.duration' | translate }}: </strong>{{flight.duration}}</span>
+                                <div>
+                                    <button class="btn btn-sm btn-warning"
+                                        (click)="updateFlight(flight)">{{'actions.updateButton' | translate}}</button>
+                                    <button class="btn btn-sm btn-danger" *ngIf="flight.id"
+                                        (click)="deleteFlight(flight.id)">{{'actions.deleteButton' |
+                                        translate}}</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-container>
+
+                <tr *ngIf="!flights">
+                    <td colspan="4" class="text-center">
+                        <span class="spinner-border spinner-border-lg align-center"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="pagination">
+            <button class="btn btn-sm btn-secondary" [disabled]="currentPage == 0"
+                (click)="previousPage()">{{'pagination.previousButton' | translate}}</button>
+            <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+            <button class="btn btn-sm btn-secondary" [disabled]="currentPage >= totalPages - 1"
+                (click)="nextPage()">{{'pagination.nextButton' | translate}}</button>
+        </div>
+    </div>
+</div>

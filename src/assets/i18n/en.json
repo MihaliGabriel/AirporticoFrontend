@@ -1,0 +1,348 @@
+{
+    "general" : {
+        "buyticketnavbar": "Buy ticket",
+        "yourticketsnavbar": "Your tickets",
+        "homenavbar": "Home",
+        "profilenavbar": "Profile",
+        "changepasswordnavbar": "Change password",
+        "registernavbar": "Register",
+        "logoutnavbar": "Log out",
+        "selectlanguagenavbar": "Select language",
+        "rolesnavbar": "Roles",
+        "usersnavbar": "Users",
+        "locationsnavbar": "Locations",
+        "airportsnavbar": "Airports",
+        "routesnavbar": "Routes",
+        "companiesnavbar": "Companies",
+        "flightsnavbar": "Flights",
+        "airplanesnavbar": "Airplanes"
+    },
+    "loginPage": {
+        "usernameLabel": "Username",
+        "passwordLabel": "Password",
+        "signInButton": "Sign in",
+        "registerLink": "Register",
+        "forgotPasswordButton": "Forgot my password",
+        "usernameRequiredError": "Username is required",
+        "passwordRequiredError": "Password is required",
+        "twoFactorAuthentication": "2 Factor Authentication"
+    },
+    "authentication": {
+        "cheapestFlightsLabel": "Cheapest flights",
+        "bookFlightButton": "Book flight",
+        "toLabel": "to"
+    },
+    "airport": {
+        "title": "Airports",
+        "nameLabel": "Airport name",
+        "locationLabel": "Location",
+        "addAirport": "Add Airport",
+        "searchButton": "Search",
+        "exportToPdfButton": "Export to PDF",
+        "exportToExcelButton": "Export to Excel",
+        "cityLabel": "Airport city",
+        "actionsLabel": "Actions"
+    },
+    "updateAirport": {
+        "title": "Update Airport",
+        "idLabel": "Id",
+        "nameLabel": "Name",
+        "locationLabel": "Location",
+        "cancelButton": "Cancel",
+        "saveButton": "Save"
+    },
+    "person": {
+        "title": "Your information",
+        "firstNameLabel": "First name",
+        "lastNameLabel": "Last name",
+        "emailLabel": "Email",
+        "phoneNumberLabel": "Phone number",
+        "birthDateLabel": "Birth date",
+        "saveButton": "Save",
+        "editButton": "Edit"
+    },
+    "pagination": {
+        "previousButton": "Previous",
+        "nextButton": "Next"
+    },
+    "actions": {
+        "updateButton": "Update",
+        "deleteButton": "Delete",
+        "saveButton": "Save",
+        "cancelButton": "Cancel"
+    },
+    "luggage": {
+        "typesTitle": "Luggage types",
+        "smallCheckedIn": "Small checked-in bag",
+        "smallCheckedInDetails": "10kg 60x90x90 cm",
+        "mediumCheckedIn": "Medium checked-in bag",
+        "mediumCheckedInDetails": "20kg 81x119x119 cm",
+        "bigCheckedIn": "Big checked-in bag",
+        "bigCheckedInDetails": "32kg 149x119x171 cm",
+        "selectLuggageButton": "Select luggage for passengers"
+    },
+    "flightDetails": {
+        "title": "Flight Details",
+        "flightName": "Flight Name:",
+        "departureCity": "Departure city:",
+        "arrivalCity": "Arrival city:",
+        "flightPrice": "Flight price:",
+        "ticketType": "Ticket type:",
+        "flightDuration": "Flight duration:",
+        "buyer": "Buyer:",
+        "numberOfPassengers": "Number of Passengers:"
+    },
+    "passengerLabel": "Passenger:",
+    "voucher": {
+        "label": "Voucher",
+        "applyButton": "Apply Voucher"
+    },
+    "checkout": {
+        "buyTicketButton": "Buy Ticket",
+        "reserveTicketButton": "Reserve ticket",
+        "selectSeatsButton": "Select seats"
+    },
+    "companies": {
+        "title": "Companies",
+        "emailLabel": "Email",
+        "nameLabel": "Name",
+        "phoneLabel": "Phone",
+        "codeLabel": "Code",
+        "addButton": "Add Company",
+        "searchButton": "Search",
+        "table": {
+            "id": "Id",
+            "companyName": "Company name",
+            "companyCode": "Company code",
+            "companyPhone": "Company phone",
+            "companyEmail": "Company email",
+            "actions": "Actions"
+        }
+    },
+    "updateCompany": {
+        "title": "Update Company",
+        "emailLabel": "Email",
+        "nameLabel": "Name",
+        "codeLabel": "Code",
+        "phoneLabel": "Phone"
+    },
+    "flights": {
+        "title": "Flights",
+        "businessSeatsLabel": "Flight business seats",
+        "economySeatsLabel": "Flight economy seats",
+        "firstClassSeatsLabel": "Flight first class seats",
+        "departureDateLabel": "Departure date",
+        "arrivalDateLabel": "Arrival date",
+        "routeLabel": "Route",
+        "companyLabel": "Company",
+        "businessPriceLabel": "Flight business price",
+        "economyPriceLabel": "Flight economy price",
+        "firstClassPriceLabel": "Flight first class price",
+        "addFlightButton": "Add Flight",
+        "exportToPdfButton": "Export to PDF",
+        "exportToExcelButton": "Export to Excel",
+        "importFromExcelButton": "Import from Excel",
+        "tableHeaders": {
+            "flights": "Flights",
+            "routeName": "Route Name",
+            "name": "Name",
+            "companyName": "Company",
+            "businessSeats": "Business seats",
+            "economySeats": "Economy seats",
+            "firstClassSeats": "First class seats",
+            "departureDate": "Departure date",
+            "arrivalDate": "Arrival date",
+            "departureCity": "Departure city",
+            "arrivalCity": "Arrival city",
+            "remainingBusinessSeats": "Remaining business seats",
+            "remainingEconomySeats": "Remaining economy seats",
+            "remainingFirstClassSeats": "Remaining first class seats",
+            "businessPrice": "Business price",
+            "economyPrice": "Economy price",
+            "firstClassPrice": "First class price",
+            "duration": "Flight duration"
+        }
+    },
+    "updateFlight": {
+        "title": "Update Flight",
+        "idLabel": "Id",
+        "businessSeatsLabel": "Flight business seats",
+        "economySeatsLabel": "Flight economy seats",
+        "firstClassSeatsLabel": "Flight first class seats",
+        "departureDateLabel": "Departure date",
+        "arrivalDateLabel": "Arrival date",
+        "routeLabel": "Route",
+        "companyLabel": "Company",
+        "businessPriceLabel": "Flight business price",
+        "economyPriceLabel": "Flight economy price",
+        "firstClassPriceLabel": "Flight first class price",
+        "remainingEconomySeatsLabel": "Remaining economy seats",
+        "remainingBusinessSeatsLabel": "Remaining business seats",
+        "remainingFirstClassSeatsLabel": "Remaining first class seats"
+    },
+    "locations": {
+        "title": "Locations",
+        "cityLabel": "City",
+        "codeLabel": "Code",
+        "countryLabel": "Country",
+        "addLocationLabel": "Add Location",
+        "searchLabel": "Search",
+        "tableHeaders": {
+            "id": "Id",
+            "code": "Code",
+            "city": "City",
+            "country": "Country",
+            "actions": "Actions"
+        }
+    },
+    "updateLocation": {
+        "title": "Update Location",
+        "idLabel": "Id",
+        "cityLabel": "City",
+        "countryLabel": "Country"
+    },
+    "roles": {
+        "title": "Roles",
+        "nameNotUniqueMessage": "Role name must be unique",
+        "roleNameLabel": "Role name",
+        "addRoleButton": "Add Role",
+        "searchButton": "Search",
+        "tableHeaders": {
+            "id": "Id",
+            "roleName": "Role name",
+            "actions": "Actions"
+        }
+    },
+    "updateRole": {
+        "title": "Update Role",
+        "idLabel": "Id",
+        "nameLabel": "Name"
+    },
+    "searchFlights": {
+        "title": "Flights",
+        "departureDateLabel": "Departure date",
+        "arrivalDateLabel": "Arrival date",
+        "departureLocationLabel": "Departure location",
+        "arrivalLocationLabel": "Arrival location",
+        "passengersLabel": "Number of passengers",
+        "companyLabel": "Company",
+        "sortByDurationLabel": "Sort by duration",
+        "searchButton": "Search Flight",
+        "firstClassPriceLabel": "First class flight price",
+        "economyPriceLabel": "Economy flight price",
+        "businessPriceLabel": "Business flight price",
+        "tableHeaders": {
+            "flights": "Flights",
+            "routeName": "Route Name",
+            "name": "Name",
+            "company": "Company",
+            "departureDate": "Departure date",
+            "arrivalDate": "Arrival date",
+            "departureCity": "Departure city",
+            "arrivalCity": "Arrival city",
+            "remainingBusinessSeats": "Remaining business seats",
+            "remainingEconomySeats": "Remaining economy seats",
+            "remainingFirstClassSeats": "Remaining first class seats",
+            "businessPrice": "Business price",
+            "economyPrice": "Economy price",
+            "firstClassPrice": "First class price",
+            "flightDuration": "Flight duration"
+        },
+        "buyTicketButton": "Buy ticket",
+        "loadingMessage": "Loading..."
+    },
+    "ticketBooking": {
+        "dialogTitle": "Ticket Booking",
+        "flightDetailsTitle": "Flight Details",
+        "flightNameLabel": "Flight Name",
+        "arrivalCityLabel": "Arrival City",
+        "departureCityLabel": "Departure City",
+        "nrOfPassengersLabel": "Number of Passengers",
+        "firstNamePlaceholder": "Passenger First Name",
+        "lastNamePlaceholder": "Passenger Last Name",
+        "emailPlaceholder": "Passenger Email",
+        "phonePlaceholder": "Passenger Phone Number",
+        "firstNameRequired": "First name is required",
+        "lastNameRequired": "Last name is required",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Email is invalid",
+        "phoneRequired": "Phone is required",
+        "phoneInvalid": "Phone is invalid",
+        "ticketTypeLabel": "Ticket Type",
+        "businessTicket": "Business",
+        "economyTicket": "Economy",
+        "firstClassTicket": "First class",
+        "buyTicketButton": "Buy Ticket",
+        "addPassengerButton": "Add Passenger",
+        "removePassengerButton": "Remove Passenger"
+    },
+    "tickets": {
+        "navbarTitle": "Your tickets",
+        "tableHeaders": {
+            "ticketName": "Ticket name",
+            "flight": "Flight",
+            "ticketType": "Ticket type",
+            "price": "Price",
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "email": "Email",
+            "phoneNumber": "Phone Number"
+        },
+        "buttonLabels": {
+            "seePassengers": "See passengers"
+        },
+        "passengersTitle": "Passengers for {{ ticketName }}"
+    },
+    "changePassword": {
+        "navbarTitle": "Change Password",
+        "oldPasswordLabel": "Old Password",
+        "newPasswordLabel": "New Password",
+        "confirmPasswordLabel": "Confirm Password",
+        "changePasswordButton": "Change Password",
+        "successMessage": "Password changed successfully!",
+        "errorMessage": "An error occurred while changing the password."
+      },
+      "registration": {
+        "bannerTitle": "Register",
+        "usernameLabel": "Username",
+        "passwordLabel": "Password",
+        "registerButton": "Register",
+        "usernameRequiredError": "Username is required",
+        "passwordRequiredError": "Password is required"
+    },
+    "users": {
+        "pageTitle": "Users",
+        "nameNotUniqueMessage": "Username is not unique",
+        "usernameLabel": "Username",
+        "passwordLabel": "Password",
+        "roleNameLabel": "Role Name",
+        "addUserButton": "Add User",
+        "searchButton": "Search",
+        "idHeader": "Id",
+        "usernameHeader": "Username",
+        "passwordHeader": "Password",
+        "roleNameHeader": "Role Name",
+        "actionsHeader": "Actions",
+        "usernameRequiredError": "Username is required",
+        "passwordRequiredError": "Password is required",
+        "roleRequiredError": "Role is required",
+        "previousButton": "Previous",
+        "nextButton": "Next",
+        "pageText": "Page",
+        "pageOfText": "of"
+      },
+      "routes": {
+        "pageTitle": "Routes",
+        "departureAirportLabel": "Departure airport",
+        "arrivalAirportLabel": "Arrival airport",
+        "addRouteButton": "Add Route",
+        "idHeader": "Id",
+        "routeNameHeader": "Route name",
+        "departureAirportHeader": "Departure airport",
+        "arrivalAirportHeader": "Arrival Airport",
+        "previousButton": "Previous",
+        "nextButton": "Next",
+        "pageText": "Page",
+        "pageOfText": "of"
+      }
+}

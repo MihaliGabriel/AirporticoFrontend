@@ -1,0 +1,45 @@
+<!-- Page Content -->
+<div class="header-banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="container box">
+          <div class="row">
+            <div class="col-12">
+              <div class="error">{{errorMessage}}</div>
+              <form [formGroup]="formData" (ngSubmit)="onClickSubmit(formData.value)" class="form-signin">
+                <div>
+                  <mat-error
+                    *ngIf="registerButtonClicked && getRegisterControl('username').invalid">
+                    <span *ngIf="getRegisterControl('username').hasError('required')">{{ 'registration.usernameRequiredError' | translate }}</span>
+                  </mat-error>
+                </div>
+                <label for="username" class="sr-only">{{ 'registration.usernameLabel' | translate }}</label>
+                <input type="text" id="username" class="form-control" formControlName="username" placeholder="{{ 'registration.usernameLabel' | translate }}"
+                  required autofocus>
+                <div>
+                  <mat-error
+                    *ngIf="registerButtonClicked && getRegisterControl('password').invalid">
+                    <span *ngIf="getRegisterControl('password').hasError('required')">{{ 'registration.passwordRequiredError' | translate }}</span>
+                  </mat-error>
+                </div>
+                <label for="inputPassword" class="sr-only">{{ 'registration.passwordLabel' | translate }}</label>
+
+                <input type="password" id="inputPassword" class="form-control" formControlName="password"
+                  placeholder="{{ 'registration.passwordLabel' | translate }}" required>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">{{ 'registration.registerButton' | translate }}</button>
+              </form>
+              <div class = "language-select">
+                <label for="languageSelect">{{'general.selectlanguagenavbar' | translate}} </label>
+                <select id="languageSelect" [(ngModel)]="selectedLanguage" (change)="onLanguageChange()">
+                  <option *ngFor="let language of supportedLanguages" [value]="language.code">{{ language.name }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

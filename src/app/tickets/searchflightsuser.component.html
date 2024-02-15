@@ -1,0 +1,169 @@
+<app-navbar (navbarEvent)="onLanguageChange()"></app-navbar>
+<div class="p-4">
+    <div class="container-fluid">
+        <h1>{{ 'searchFlights.title' | translate }}</h1>
+        <form [formGroup]="searchFlightForm" (ngSubmit)="searchFlight(searchFlightForm.value)"
+            class="form-searchflight">
+            <mat-form-field>
+                <mat-label>{{ 'searchFlights.departureDateLabel' | translate }}</mat-label>
+                <input matInput formControlName="departureDate" placeholder="{{ 'flights.departureDateLabel' | translate }}"
+                    type="datetime-local">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>{{ 'searchFlights.arrivalDateLabel' | translate }}</mat-label>
+                <input matInput formControlName="arrivalDate" placeholder="{{ 'flights.arrivalDateLabel' | translate }}"
+                    type="datetime-local">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>{{ 'searchFlights.departureLocationLabel' | translate }}</mat-label>
+                <mat-select formControlName="departureCity">
+                    <mat-option *ngFor="let location of locations" [value]="location.city">
+                        {{ location.city }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>{{ 'searchFlights.arrivalLocationLabel' | translate }}</mat-label>
+                <mat-select formControlName="arrivalCity">
+                    <mat-option *ngFor="let location of locations" [value]="location.city">
+                        {{ location.city }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>{{ 'searchFlights.passengersLabel' | translate }}</mat-label>
+                <input matInput formControlName="nrOfPassengers" placeholder="{{ 'searchFlights.passengersLabel' | translate }}" required>
+                <mat-error
+                    *ngIf="buyButtonClicked && getFlightControl('nrOfPassengers').invalid && getFlightControl('nrOfPassengers').touched">
+                    <span *ngIf="getFlightControl('nrOfPassengers').hasError('required')">{{ 'searchFlights.passengersLabel' | translate }} is
+                        required</span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>{{ 'searchFlights.companyLabel' | translate }}</mat-label>
+                <mat-select formControlName="companyId">
+                    <mat-option *ngFor="let company of companies" [value]="company.id">
+                        {{ company.companyName }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>{{ 'searchFlights.sortByDurationLabel' | translate }}</mat-label>
+                <mat-select formControlName="sortByDuration">
+                    <mat-option value="Ascending">{{ 'searchFlights.sortByDurationLabel' | translate }}</mat-option>
+                    <mat-option value="Descending">{{ 'searchFlights.sortByDurationLabel' | translate }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button class="btn btn-sm btn-primary btn-block" type="submit">{{ 'searchFlights.searchButton' | translate }}</button>
+        </form>
+        <div class="content-wrapper">
+            <div class="flight-filters">
+                <div>
+                    <label>{{ 'searchFlights.firstClassPriceLabel' | translate }}</label>
+                </div>
+                <mat-slider thumbLabel min="{{minPriceSlider}}" max="{{maxPriceFirstClassSlider}}" step="1" showTickMarks discrete
+                    (input)="onPriceSliderValueChange()">
+                    <input [(ngModel)]="minPriceFirstClassSliderValue" matSliderStartThumb>
+                    <input [(ngModel)]="maxPriceFirstClassSliderValue" matSliderEndThumb>
+                </mat-slider>
+                <div>
+                    <label>{{ 'searchFlights.economyPriceLabel' | translate }}</label>
+                </div>
+                <mat-slider thumbLabel min="{{minPriceSlider}}" max="{{maxPriceEconomySlider}}" step="1" showTickMarks discrete
+                    (input)="onPriceSliderValueChange()">
+                    <input [(ngModel)]="minPriceEconomySliderValue" matSliderStartThumb>
+                    <input [(ngModel)]="maxPriceEconomySliderValue" matSliderEndThumb>
+                </mat-slider>
+                <div>
+                    <label>{{ 'searchFlights.businessPriceLabel' | translate }}</label>
+                </div>
+                <mat-slider thumbLabel min="{{minPriceSlider}}" max="{{maxPriceBusinessSlider}}" step="1" showTickMarks discrete
+                    (input)="onPriceSliderValueChange()">
+                    <input [(ngModel)]="minPriceBusinessSliderValue" matSliderStartThumb>
+                    <input [(ngModel)]="maxPriceBusinessSliderValue" matSliderEndThumb>
+                </mat-slider>
+            </div>
+            <div class="flights-area">
+
+                <div class="flights-table">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%">{{ 'searchFlights.tableHeaders.flights' | translate }}</th>
+                                <th style="width: 15%">{{ 'flights.tableHeaders.name' | translate }}</th>
+                                <th style="width: 10%">{{ 'flights.tableHeaders.departureCity' | translate }}</th>
+                                <th style="width: 10%">{{ 'flights.tableHeaders.arrivalCity' | translate }}</th>
+                                <th style="width: 10%">{{ 'flights.tableHeaders.economyPrice' | translate }}</th>
+                                <th style="width: 10%">{{ 'flights.tableHeaders.firstClassPrice' | translate }}</th>
+                                <th style="width: 10%">{{ 'flights.tableHeaders.businessPrice' | translate }}</th>
+                                <th style="width: 5%">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let flight of flights">
+                                <!-- Simplified Row -->
+                                <tr>
+                                    <td><img src="assets/airplane.png" alt="Icon" style="width: 50px; height: 50px;" />
+                                    </td>
+                                    <td>{{flight.name}}</td>
+                                    <td>{{flight.departureCity}}</td>
+                                    <td>{{flight.arrivalCity}}</td>
+                                    <td><s *ngIf="flight.discountPercentage > 0">{{ flight.businessPrice }}</s>{{
+                                        flight.discountedBusinessPrice }}
+                                    </td>
+                                    <td><s *ngIf="flight.discountPercentage > 0">{{ flight.economyPrice }}</s>{{
+                                        flight.discountedEconomyPrice }}
+                                    </td>
+                                    <td><s *ngIf="flight.discountPercentage > 0">{{ flight.firstClassPrice }}</s>{{
+                                        flight.discountedFirstClassPrice }}
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary" (click)="toggleDetails(flight)">
+                                            {{flight.isExpanded ? 'Hide Details' : 'See Details'}}
+                                        </button>
+                                    </td>
+                                </tr>
+            
+                                <tr *ngIf="flight.isExpanded" [@expandDetail]="flight.isExpanded ? 'expanded' : 'collapsed'">
+                                    <td colspan="8">
+                                        <div class="d-flex justify-content-between">
+                                            <span><strong>{{ 'flights.tableHeaders.routeName' | translate }}: </strong>{{flight.routeName}}</span>
+                                            <span><strong>{{ 'flights.tableHeaders.companyName' | translate }}: </strong>{{flight.companyName}}</span>
+                                            <span><strong>{{ 'flights.tableHeaders.remainingBusinessSeats' | translate }}: </strong>{{flight.businessSeats}}</span>
+                                            <span><strong>{{ 'flights.tableHeaders.remainingEconomySeats' | translate }}: </strong>{{flight.economySeats}}</span>
+                                            <span><strong>{{ 'flights.tableHeaders.remainingFirstClassSeats' | translate }}: </strong>{{flight.firstClassSeats}}</span>
+                                            <span><strong>{{ 'flights.tableHeaders.businessPrice' | translate }}: </strong>{{flight.businessPrice}}</span>
+                                            <span><strong>{{ 'flights.tableHeaders.firstClassPrice' | translate }}: </strong>{{flight.firstClassPrice}}</span>
+                                            <span><strong>{{ 'flights.tableHeaders.economyPrice' | translate }}: </strong>{{flight.economyPrice}}</span>
+                                            <span><strong>{{ 'flights.tableHeaders.departureDate' | translate }}: </strong>{{flight.departureDate}}</span>
+                                            <span><strong>{{ 'flights.tableHeaders.arrivalDate' | translate }}: </strong>{{flight.arrivalDate}}</span>
+                                            <span><strong>{{ 'flights.tableHeaders.duration' | translate }}: </strong>{{flight.duration}}</span>
+                                            <div>
+                                                <td>
+                                                    <button class="btn btn-sm btn-warning" (click)="buyTicket(flight)">{{ 'searchFlights.buyTicketButton' | translate }}</button>
+                                                </td>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </ng-container>
+            
+                            <tr *ngIf="!flights">
+                                <td colspan="4" class="text-center">
+                                    <span class="spinner-border spinner-border-lg align-center"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination">
+                    <button class="btn btn-sm btn-secondary" [disabled]="currentPage == 0"
+                        (click)="previousPage()">{{'pagination.previousButton' | translate}}</button>
+                    <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+                    <button class="btn btn-sm btn-secondary" [disabled]="currentPage >= totalPages - 1"
+                        (click)="nextPage()">{{'pagination.nextButton' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

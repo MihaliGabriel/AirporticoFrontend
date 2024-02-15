@@ -1,0 +1,59 @@
+<app-navbar (navbarEvent)="onLanguageChange()"></app-navbar>
+<div class="p-4">
+    <div class="container">
+        <h1>{{'locations.title' | translate}}</h1>
+          <form [formGroup]="locationForm" (ngSubmit)="addLocation(locationForm.value)" class="form-addlocation">
+            <mat-form-field appearance="fill">
+              <mat-label>{{'locations.cityLabel' | translate}}</mat-label>
+              <input type="text" matInput formControlName="city" placeholder="City">
+            </mat-form-field>
+          
+            <mat-form-field appearance="fill">
+                <mat-label>{{'locations.codeLabel' | translate}}</mat-label>                                     
+                <input type="text" id="locationCode" matInput formControlName="locationCode"
+                    placeholder="Code" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>{{'locations.countryLabel' | translate}}</mat-label>
+              <input type="text" matInput formControlName="country" placeholder="Country" required>
+            </mat-form-field>
+          
+            <button class="btn btn-sm btn-primary btn-block" type="submit">{{'locations.addLocationLabel' | translate}}</button>
+            <button class="btn btn-sm btn-primary btn-block" type="button" (click)="searchLocations(locationForm.value)">{{'locations.searchLabel' | translate}}</button>
+          </form>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 20%">{{'locations.tableHeaders.id' | translate}}</th>
+                    <th style="width: 20%">{{'locations.tableHeaders.code' | translate}}</th>
+                    <th style="width: 20%">{{'locations.tableHeaders.city' | translate}}</th>
+                    <th style="width: 20%">{{'locations.tableHeaders.country' | translate}}</th>
+                    <th style="width: 20%">{{'locations.tableHeaders.actions' | translate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let location of locations">
+                    <td>{{location.id}}</td>
+                    <td>{{location.locationCode}}</td>
+                    <td>{{location.city}}</td>
+                    <td>{{location.country}}</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning" (click)="updateLocation(location)">{{'actions.updateButton' | translate}}</button>
+                        <button class="btn btn-sm btn-danger" (click)="deleteLocation(location.id)">{{'actions.deleteButton' | translate}}</button>
+                    </td>
+                </tr>
+                <tr *ngIf="!locations">
+                    <td colspan="5" class="text-center">
+                        <span class="spinner-border spinner-border-lg align-center"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pagination">
+            <button class="btn btn-sm btn-secondary" [disabled]="currentPage == 0" (click)="previousPage()">{{'pagination.previousButton' | translate}}</button>
+            <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+            <button class="btn btn-sm btn-secondary" [disabled]="currentPage >= totalPages - 1" (click)="nextPage()">{{'pagination.nextButton' | translate}}</button>
+        </div>
+    </div>
+</div>

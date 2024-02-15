@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Update Location</h2>
+<mat-dialog-content>
+  <form [formGroup]="updateForm">
+    <mat-form-field>
+        <input matInput formControlName="id" placeholder="Id" readonly>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="city" placeholder="City">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="country" placeholder="Country">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="locationCode" placeholder="Code">
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">{{'actions.cancelButton' | translate}}</button>
+  <button mat-button (click)="onSave()">{{'actions.saveButton' | translate}}</button>
+</mat-dialog-actions>

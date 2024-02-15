@@ -1,0 +1,90 @@
+<app-navbar></app-navbar>
+<div class="p-4">
+    <div class="container">
+        <h1>{{ 'companies.title' | translate }}</h1>
+        <!-- Add company form -->
+        <mat-error>{{nameNotUniqueMessage}}</mat-error>
+        <form [formGroup]="companyForm" (ngSubmit)="addCompany(companyForm.value)" class="form-addcompany">
+            <div>
+                <mat-error *ngIf="addCompanyButton && getCompanyControl('email')?.invalid">
+                    <span *ngIf="getCompanyControl('email')?.errors?.required">{{ 'companies.emailRequired' | translate }}</span>
+                    <span *ngIf="getCompanyControl('email')?.errors?.email">{{ 'companies.emailInvalid' | translate }}</span>
+                </mat-error>
+            </div>
+            <mat-form-field appearance="fill">
+                <mat-label>{{ 'companies.emailLabel' | translate }}</mat-label>
+                <input type="text" id="email" matInput formControlName="email" placeholder="{{ 'companies.emailLabel' | translate }}"
+                    required>
+            </mat-form-field>
+            <div>
+                <mat-error *ngIf="addCompanyButton && getCompanyControl('companyName')?.invalid">
+                    <span *ngIf="getCompanyControl('companyName')?.errors?.required">{{ 'companies.nameRequired' | translate }}</span>
+                </mat-error>
+            </div>
+            <mat-form-field appearance="fill">
+                <mat-label>{{ 'companies.nameLabel' | translate }}</mat-label>                                     
+                <input type="text" id="companyName" matInput formControlName="companyName"
+                    placeholder="{{ 'companies.nameLabel' | translate }}" required>
+            </mat-form-field>
+            <div>
+                <mat-error *ngIf="addCompanyButton && getCompanyControl('phone')?.invalid">
+                    <span *ngIf="getCompanyControl('phone')?.errors?.required">{{ 'companies.phoneRequired' | translate }}</span>
+                    <span *ngIf="getCompanyControl('phone')?.errors?.pattern">{{ 'companies.phoneInvalid' | translate }}</span>
+                </mat-error>
+            </div>
+            <mat-form-field appearance="fill">
+                <mat-label>{{ 'companies.phoneLabel' | translate }}</mat-label>
+                <input type="text" id="companyPhone" matInput formControlName="phone"
+                    placeholder="{{ 'companies.phoneLabel' | translate }}" required>
+            </mat-form-field>
+            <div>
+                <mat-error *ngIf="addCompanyButton && getCompanyControl('companyCode')?.invalid">
+                    <span *ngIf="getCompanyControl('companyCode')?.errors?.required">{{ 'companies.codeRequired' | translate }}</span>
+                </mat-error>
+            </div>
+            <mat-form-field appearance="fill">
+                <mat-label>{{ 'companies.codeLabel' | translate }}</mat-label>                                     
+                <input type="text" id="companyCode" matInput formControlName="companyCode"
+                    placeholder="{{ 'companies.codeLabel' | translate }}" required>
+            </mat-form-field>
+            <button class="btn btn-sm btn-primary btn-block" type="submit">{{ 'companies.addButton' | translate }}</button>
+            <button class="btn btn-sm btn-primary btn-block" type="button"
+                (click)="searchCompanies(companyForm.value)">{{ 'companies.searchButton' | translate }}</button>
+        </form>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 10%">{{ 'companies.table.id' | translate }}</th>
+                    <th style="width: 25%">{{ 'companies.table.companyName' | translate }}</th>
+                    <th style="width: 25%">{{ 'companies.table.companyCode' | translate }}</th>
+                    <th style="width: 25%">{{ 'companies.table.companyPhone' | translate }}</th>
+                    <th style="width: 20%">{{ 'companies.table.companyEmail' | translate }}</th>
+                    <th style="width: 20%">{{ 'companies.table.actions' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let company of companies">
+                    <td>{{company.id}}</td>
+                    <td>{{company.companyName}}</td>
+                    <td>{{company.companyCode}}</td>
+                    <td>{{company.phone}}</td>
+                    <td>{{company.email}}</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning" (click)="updateCompany(company)">{{'actions.updateButton' | translate}}</button>
+                        <button class="btn btn-sm btn-danger" (click)="deleteCompany(company.id)">{{'actions.deleteButton' | translate}}</button>
+                    </td>
+                </tr>
+                <tr *ngIf="!companies">
+                    <td colspan="5" class="text-center">
+                        <span class="spinner-border spinner-border-lg align-center"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pagination">
+            <button class="btn btn-sm btn-secondary" [disabled]="currentPage == 0" (click)="previousPage()">{{'pagination.previousButton' | translate}}</button>
+            <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+            <button class="btn btn-sm btn-secondary" [disabled]="currentPage >= totalPages - 1" (click)="nextPage()">{{'pagination.nextButton' | translate}}</button>
+        </div>
+    </div>
+</div>

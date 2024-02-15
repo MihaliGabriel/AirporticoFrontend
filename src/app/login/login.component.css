@@ -1,0 +1,77 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.header-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/assets/login1.jpeg');
+  background-size: cover;
+  background-position: center center;
+  height: 100vh;
+  color: rgb(0, 0, 0);
+}
+
+.container.box {
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,.1);
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+  background: transparent;
+  border: none;
+}
+
+h2.form-signin-heading {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  outline: none;
+  font-size: 16px;
+}
+
+button,
+.nav-item.nav-link.custom-link {
+  background-color: #102d3e; /* black background */
+  color: rgb(255, 255, 255);
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 18px;
+  margin-right: 10px;
+  cursor: pointer;
+  text-decoration: none; /* remove underline from the links */
+  display: inline-block; /* inline display */
+}
+
+button:last-child,
+.nav-item.nav-link.custom-link:last-child {
+  margin-right: 0;
+}
+
+button:hover,
+.nav-item.nav-link.custom-link:hover {
+  background-color: #295a7d; /* dark gray on hover */
+}
+
+label {
+  display: block; /* block display */
+  margin-bottom: 10px; /* space below the label */
+}

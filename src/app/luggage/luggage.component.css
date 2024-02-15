@@ -1,0 +1,19 @@
+.mat-dialog-container {
+    padding-top: 15px;
+    background-color: rgba(61, 61, 241, 0.7);
+}
+
+.mat-dialog {
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.passenger-luggage-wrapper {
+    display: flex;
+    align-items: center; /* Align items vertically in the center */
+    gap: 10px; /* Adjust as needed */
+}
+
+.save-button {
+    margin-top: 20px; /* Adjust as needed */
+  }

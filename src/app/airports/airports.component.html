@@ -1,0 +1,58 @@
+<app-navbar></app-navbar>
+<div class="p-4">
+    <div class="container">
+        <h1>{{ 'airport.title' | translate }}</h1>
+    <!-- Add airport form -->
+    <form [formGroup]="airportForm" (ngSubmit)="addAirport(airportForm.value)" class="form-addairport">
+      <mat-error>{{nameNotUniqueMessage}}</mat-error>
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'airport.nameLabel' | translate }}</mat-label>
+        <input type="text" matInput formControlName="name" placeholder="{{ 'airport.nameLabel' | translate }}" required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{ 'airport.locationLabel' | translate }}</mat-label>
+        <mat-select formControlName="city">
+          <mat-option *ngFor="let location of locations" [value]="location.city">
+            {{ location.city }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button class="btn btn-sm btn-primary btn-block" type="submit">{{ 'airport.addAirport' | translate }}</button>
+      <button class="btn btn-sm btn-primary btn-block" type="button" (click)="searchUsers(airportForm.value)">{{ 'airport.searchButton' | translate }}</button>
+      <button class="btn btn-sm btn-primary btn-block" type="button" (click)="exportAirportsToPdf()">{{ 'airport.exportToPdfButton' | translate }}</button>
+      <button class="btn btn-sm btn-primary btn-block" type="button" (click)="exportAirportsToExcel()">{{ 'airport.exportToExcelButton' | translate }}</button>
+    </form>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 10%">Id</th>
+                    <th style="width: 40%">{{'airport.nameLabel' | translate}}</th>
+                    <th style="width: 35%">{{'airport.cityLabel' | translate}}</th>
+                    <th style="width: 15%">{{'airport.actionsLabel' | translate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let airport of airports">
+                    <td>{{airport.id}}</td>
+                    <td>{{airport.name}}</td>
+                    <td>{{airport.city}}</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning" (click)="updateAirport(airport)">{{'actions.updateButton' | translate}}</button>
+                        <button class="btn btn-sm btn-danger" (click)="deleteAirport(airport.id)">{{'actions.deleteButton' | translate}}</button>
+                    </td>
+                </tr>
+                <tr *ngIf="!airports">
+                    <td colspan="5" class="text-center">
+                        <span class="spinner-border spinner-border-lg align-center"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pagination">
+            <button class="btn btn-sm btn-secondary" [disabled]="currentPage == 0" (click)="previousPage()">{{'pagination.previousButton' | translate}}</button>
+            <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+            <button class="btn btn-sm btn-secondary" [disabled]="currentPage >= totalPages - 1" (click)="nextPage()">{{'pagination.nextButton' | translate}}</button>
+        </div>
+    </div>
+    
+</div>

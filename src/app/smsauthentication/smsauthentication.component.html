@@ -1,0 +1,15 @@
+<div class = "p-4">
+    <div class = "container">
+        <h1>Enter the code sent on your phone</h1>
+        <mat-error>
+            {{errorMessage}}
+        </mat-error>
+        <form [formGroup]="smsTokenForm" (ngSubmit)="enterSmsToken()" class="form-smstokenform">
+            <mat-form-field appearance="fill">
+                <mat-label>SMS code</mat-label>
+                <input type="text" matInput formControlName="smsToken" placeholder="Sms token">
+            </mat-form-field>
+            <button class="btn btn-sm btn-primary btn-block" type="submit">Enter</button>
+        </form>
+    </div>
+</div>

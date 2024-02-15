@@ -1,0 +1,45 @@
+<app-navbar></app-navbar>
+<div class="p-4">
+    <div class="container">
+        <h1>{{'roles.title' | translate}}</h1>
+          <mat-error>{{nameNotUniqueMessage}}</mat-error>
+          <form [formGroup]="roleForm" (ngSubmit)="addRole(roleForm.value)" class="form-addrole">
+            <mat-form-field appearance="fill">
+                <mat-label>{{'roles.roleNameLabel' | translate}}</mat-label>
+                <input type="text" matInput formControlName="name" placeholder="Role name">
+            </mat-form-field>
+
+            <button class="btn btn-sm btn-primary btn-block" type="submit">Add Role</button>
+            <button class="btn btn-sm btn-primary btn-block" type="button" (click)="searchRoles(roleForm.value)">Search</button>
+        </form>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 10%">{{'roles.tableHeaders.id' | translate}}</th>
+                    <th style="width: 70%">{{'roles.tableHeaders.roleName' | translate}}</th>
+                    <th style="width: 20%">{{'roles.tableHeaders.actions' | translate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let role of roles">
+                    <td>{{role.id}}</td>
+                    <td>{{role.name}}</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning" (click)="updateRole(role)">{{'actions.updateButton' | translate}}</button>
+                        <button class="btn btn-sm btn-danger" (click)="deleteRole(role.id)">{{'actions.deleteButton' | translate}}</button>
+                    </td>
+                </tr>
+                <tr *ngIf="!roles">
+                    <td colspan="5" class="text-center">
+                        <span class="spinner-border spinner-border-lg align-center"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pagination">
+            <button class="btn btn-sm btn-secondary" [disabled]="currentPage == 0" (click)="previousPage()">{{'pagination.previousButton' | translate}}</button>
+            <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+            <button class="btn btn-sm btn-secondary" [disabled]="currentPage >= totalPages - 1" (click)="nextPage()">{{'pagination.nextButton' | translate}}</button>
+        </div>
+    </div>
+</div>

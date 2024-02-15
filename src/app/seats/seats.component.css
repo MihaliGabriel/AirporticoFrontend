@@ -1,0 +1,24 @@
+.seat-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .seat {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  
+  .selected {
+    background-color: #2196f3;
+    color: white;
+  }
+  
+  .seat.already-selected {
+    background-color: red;
+}

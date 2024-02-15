@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Please enter number of passengers</h2>
+<mat-dialog-content>
+  <form [formGroup]="nrOfPassengersForm">
+    <mat-form-field>
+      <input matInput formControlName="nrOfPassengers" placeholder="Nr of passengers">
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button (click)="onSave()">Save</button>
+</mat-dialog-actions>

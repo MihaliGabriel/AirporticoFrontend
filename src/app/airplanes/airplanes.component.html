@@ -1,0 +1,63 @@
+<app-navbar></app-navbar>
+<div class="p-4">
+    <div class="container">
+        <h1>{{ 'airplanes.title' | translate }}</h1>
+
+        <!-- Add airplane form -->
+        <form [formGroup]="airplaneForm" (ngSubmit)="addAirplane(airplaneForm.value)" class="form-addairplane">
+            <mat-form-field appearance="fill">
+                <mat-label>{{ 'airplanes.nameLabel' | translate }}</mat-label>
+                <input type="text" id="name" matInput formControlName="name" placeholder="{{ 'airplanes.nameLabel' | translate }}" required>
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill">
+                <mat-label>{{ 'airplanes.columnsLabel' | translate }}</mat-label>
+                <input type="number" id="columns" matInput formControlName="columns" placeholder="{{ 'airplanes.columnsLabel' | translate }}" required>
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill">
+                <mat-label>{{ 'airplanes.rowsLabel' | translate }}</mat-label>
+                <input type="number" id="rows" matInput formControlName="rows" placeholder="{{ 'airplanes.rowsLabel' | translate }}" required>
+            </mat-form-field>
+            
+            <button class="btn btn-sm btn-primary btn-block" type="submit">{{ 'airplanes.addButton' | translate }}</button>
+        </form>
+        
+        <!-- Airplanes table -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 10%">{{ 'airplanes.table.id' | translate }}</th>
+                    <th style="width: 30%">{{ 'airplanes.table.name' | translate }}</th>
+                    <th style="width: 30%">{{ 'airplanes.table.columns' | translate }}</th>
+                    <th style="width: 30%">{{ 'airplanes.table.rows' | translate }}</th>
+                    <th style="width: 20%">{{ 'airplanes.table.actions' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let airplane of airplanes">
+                    <td>{{airplane.id}}</td>
+                    <td>{{airplane.name}}</td>
+                    <td>{{airplane.columns}}</td>
+                    <td>{{airplane.rows}}</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning" (click)="updateAirplane(airplane)">{{'actions.updateButton' | translate}}</button>
+                        <button class="btn btn-sm btn-danger" (click)="deleteAirplane(airplane.id)">{{'actions.deleteButton' | translate}}</button>
+                    </td>
+                </tr>
+                <tr *ngIf="!airplanes">
+                    <td colspan="5" class="text-center">
+                        <span class="spinner-border spinner-border-lg align-center"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- Pagination controls -->
+        <div class="pagination">
+            <button class="btn btn-sm btn-secondary" [disabled]="currentPage == 0" (click)="previousPage()">{{'pagination.previousButton' | translate}}</button>
+            <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+            <button class="btn btn-sm btn-secondary" [disabled]="currentPage >= totalPages - 1" (click)="nextPage()">{{'pagination.nextButton' | translate}}</button>
+        </div>
+    </div>
+</div>

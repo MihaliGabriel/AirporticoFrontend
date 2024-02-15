@@ -1,0 +1,75 @@
+<app-navbar></app-navbar>
+<div class="p-4">
+  <div class="container">
+    <h1>{{ 'users.pageTitle' | translate }}</h1>
+    <form [formGroup]="userForm" (ngSubmit)="addUser(userForm.value)" class="form-adduser">
+      <div>
+        <mat-error *ngIf="addUserButton && getUserControl('username')?.invalid">
+          <span *ngIf="getUserControl('username')?.hasError('required')">{{ 'users.usernameRequiredError' | translate }}</span>
+        </mat-error>
+      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'users.usernameLabel' | translate }}</mat-label>
+        <input type="text" matInput formControlName="username" placeholder="{{ 'users.usernameLabel' | translate }}" required>
+      </mat-form-field>
+      <div>
+        <mat-error *ngIf="addUserButton && getUserControl('password')?.invalid">
+          <span *ngIf="getUserControl('password')?.hasError('required')">{{ 'users.passwordRequiredError' | translate }}</span>
+        </mat-error>
+      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'users.passwordLabel' | translate }}</mat-label>
+        <input type="password" matInput formControlName="password" placeholder="{{ 'users.passwordLabel' | translate }}" required>
+      </mat-form-field>
+      <div>
+        <mat-error *ngIf="addUserButton && getUserControl('roleName')?.invalid">
+          <span *ngIf="getUserControl('roleName')?.hasError('required')">{{ 'users.roleRequiredError' | translate }}</span>
+        </mat-error>
+      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'users.roleNameLabel' | translate }}</mat-label>
+        <mat-select formControlName="roleName">
+          <mat-option *ngFor="let role of roles" [value]="role.name">
+            {{ role.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button class="btn btn-sm btn-primary btn-block" type="submit">{{ 'users.addUserButton' | translate }}</button>
+      <button class="btn btn-sm btn-primary btn-block" type="button" (click)="searchUsers(userForm.value)">{{ 'users.searchButton' | translate }}</button>
+    </form>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th style="width: 20%">{{ 'users.idHeader' | translate }}</th>
+          <th style="width: 20%">{{ 'users.usernameHeader' | translate }}</th>
+          <th style="width: 20%">{{ 'users.passwordHeader' | translate }}</th>
+          <th style="width: 20%">{{ 'users.roleNameHeader' | translate }}</th>
+          <th style="width: 20%">{{ 'users.actionsHeader' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.password }}</td>
+          <td>{{ user.roleName }}</td>
+          <td>
+            <button class="btn btn-sm btn-warning" (click)="updateUser(user)">{{ 'actions.updateButton' | translate }}</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteUser(user.id)">{{ 'actions.deleteButton' | translate }}</button>
+          </td>
+        </tr>
+        <tr *ngIf="!users">
+          <td colspan="5" class="text-center">
+            <span class="spinner-border spinner-border-lg align-center"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pagination">
+      <button class="btn btn-sm btn-secondary" [disabled]="currentPage == 0" (click)="previousPage()">{{ 'pagination.previousButton' | translate }}</button>
+      <span>{{ 'users.pageText' | translate }} {{ currentPage + 1 }} {{ 'users.pageOfText' | translate }} {{ totalPages }}</span>
+      <button class="btn btn-sm btn-secondary" [disabled]="currentPage >= totalPages - 1" (click)="nextPage()">{{ 'pagination.nextButton' | translate }}</button>
+    </div>
+  </div>
+</div>

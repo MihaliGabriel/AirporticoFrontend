@@ -1,0 +1,59 @@
+    <mat-dialog>
+        <mat-dialog-title style="font-weight: bold; font-size: 20px;">Please select type of luggages for passengers</mat-dialog-title>
+        <mat-dialog-content>
+            <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                        Passenger: {{ data.buyer.firstName }} {{ data.buyer.lastName }}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-accordion>
+                        <mat-expansion-panel *ngFor="let buyerLuggage of buyerLuggages">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                            {{ buyerLuggage.name }}
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>        
+                        <!-- Here, you can place your logic for increasing/decreasing luggage quantity -->
+                        <div class="luggage-quantity">
+                            <button mat-button (click)="decrementQuantityBuyer(buyerLuggage)">-</button>
+                            {{ buyerLuggage.quantity }}
+                            <button mat-button (click)="incrementQuantityBuyer(buyerLuggage)">+</button>
+                        </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                    </mat-expansion-panel>
+                <mat-expansion-panel *ngFor="let passenger of data.passengers">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                    Passenger: {{ passenger.firstName }} {{ passenger.lastName }}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+            
+                <mat-accordion>
+                    <mat-expansion-panel *ngFor="let luggage of luggages">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                        {{ luggage.name }}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    
+                    <!-- Here, you can place your logic for increasing/decreasing luggage quantity -->
+                    <div class="luggage-quantity">
+                        <button mat-button (click)="decrementQuantity(passenger, luggage)">-</button>
+                        {{ luggage.quantity }}
+                        <button mat-button (click)="incrementQuantity(passenger, luggage)">+</button>
+                    </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                </mat-expansion-panel>
+            </mat-accordion>
+            
+        <div class="save-button">
+            <button mat-raised-button color="accent" (click)="save()">Select luggages</button>
+            <button mat-raised-button (click)="onCancel()">Close</button>
+        </div>
+        </mat-dialog-content>
+    </mat-dialog>
+    

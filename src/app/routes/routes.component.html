@@ -1,0 +1,58 @@
+<app-navbar></app-navbar>
+<div class="p-4">
+  <div class="container">
+    <h1>{{ 'routes.pageTitle' | translate }}</h1>
+    <!-- Add Route form -->
+    <form [formGroup]="routeForm" (ngSubmit)="addRoute(routeForm.value)" class="form-addroute">
+      <mat-form-field>
+        <mat-label>{{ 'routes.departureAirportLabel' | translate }}</mat-label>
+        <mat-select formControlName="departureAirport">
+          <mat-option *ngFor="let airport of airports" [value]="airport.name">
+            {{ airport.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{ 'routes.arrivalAirportLabel' | translate }}</mat-label>
+        <mat-select formControlName="arrivalAirport">
+          <mat-option *ngFor="let airport of airports" [value]="airport.name">
+            {{ airport.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button class="btn btn-sm btn-primary btn-block" type="submit">{{ 'routes.addRouteButton' | translate }}</button>
+    </form>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th style="width: 20%">{{ 'routes.idHeader' | translate }}</th>
+          <th style="width: 20%">{{ 'routes.routeNameHeader' | translate }}</th>
+          <th style="width: 20%">{{ 'routes.departureAirportHeader' | translate }}</th>
+          <th style="width: 20%">{{ 'routes.arrivalAirportHeader' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let route of routes">
+          <td>{{ route.id }}</td>
+          <td>{{ route.routeName }}</td>
+          <td>{{ route.departureAirport }}</td>
+          <td>{{ route.arrivalAirport }}</td>
+          <td>
+            <button class="btn btn-sm btn-warning" (click)="updateRoute(route)">{{ 'actions.updateButton' | translate }}</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteRoute(route.id)">{{ 'actions.deleteButton' | translate }}</button>
+          </td>
+        </tr>
+        <tr *ngIf="!routes">
+          <td colspan="5" class="text-center">
+            <span class="spinner-border spinner-border-lg align-center"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pagination">
+      <button class="btn btn-sm btn-secondary" [disabled]="currentPage == 0" (click)="previousPage()">{{ 'pagination.previousButton' | translate }}</button>
+      <span>{{ 'routes.pageText' | translate }} {{ currentPage + 1 }} {{ 'routes.pageOfText' | translate }} {{ totalPages }}</span>
+      <button class="btn btn-sm btn-secondary" [disabled]="currentPage >= totalPages - 1" (click)="nextPage()">{{ 'pagination.nextButton' | translate }}</button>
+    </div>
+  </div>
+</div>

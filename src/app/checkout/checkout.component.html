@@ -1,0 +1,51 @@
+<app-navbar></app-navbar>
+<div class="p-4">
+    <div *ngIf="formData" class="container">
+        <div class="baggages-types">
+            <h4>{{ 'luggage.typesTitle' | translate }}</h4>
+            <p>{{ 'luggage.smallCheckedIn' | translate }}</p>
+            <p>{{ 'luggage.smallCheckedInDetails' | translate }}</p>
+            <img src="assets/small-luggage-removebg-preview.png" alt="Icon" style="width: 60px; height: 60px;" />
+            <p>{{ 'luggage.mediumCheckedIn' | translate }}</p>
+            <p>{{ 'luggage.mediumCheckedInDetails' | translate }}</p>
+            <img src="assets/medium-luggage-removebg-preview.png" alt="Icon" style="width: 60px; height: 50px;" />
+            <p>{{ 'luggage.bigCheckedIn' | translate }}</p>
+            <p>{{ 'luggage.bigCheckedInDetails' | translate }}</p>
+            <img src="assets/big-luggage-removebg-preview.png" alt="Icon" style="width: 55px; height: 70px;" />
+            <div class="luggage-button">
+                <button mat-raised-button color="accent" (click)="selectLuggage()">{{ 'luggage.selectLuggageButton' | translate }}</button>
+            </div>
+        </div>
+        <mat-card class="ticket-card">
+            <h3>{{ 'flightDetails.title' | translate }}</h3>
+            <p>{{ 'flightDetails.flightName' | translate }}{{formData.flightName}}</p>
+            <p>{{ 'flightDetails.departureCity' | translate }}{{departureCity}}</p>
+            <p>{{ 'flightDetails.arrivalCity' | translate }}{{arrivalCity}}</p>
+            <p>{{ 'flightDetails.flightPrice' | translate }}{{flightPrice}}</p>
+            <p>{{ 'flightDetails.ticketType' | translate }}{{ticketType}}</p>
+            <p>{{ 'flightDetails.flightDuration' | translate }}{{duration}}</p>
+            <p *ngIf="emptyPerson">{{ 'flightDetails.buyer' | translate }}{{emptyPerson.firstName}} {{emptyPerson.lastName}}</p>
+            <p>{{ 'flightDetails.numberOfPassengers' | translate }}{{formData.nrOfPassengers}}</p>
+            <div *ngFor="let passenger of formData.passengers">
+                <p>{{ 'passengerLabel' | translate }}{{passenger.firstName}} {{passenger.lastName}}</p>
+            </div>
+        </mat-card>
+
+        <div class="voucher-section">
+            <mat-form-field appearance="outline">
+                <mat-label>{{ 'voucher.label' | translate }}</mat-label>
+                <input matInput [(ngModel)]="voucher" placeholder="{{ 'voucher.label' | translate }}">
+            </mat-form-field>
+            <div class="voucher-button">
+                <button mat-raised-button color="accent" (click)="applyVoucher()">{{ 'voucher.applyButton' | translate }}</button>
+            </div>
+            <div class="select-seats-button">
+                <button mat-raised-button color="accent" (click)="selectSeats()">{{'checkout.selectSeatsButton' | translate}}</button>
+            </div>
+        </div>
+    </div>
+    <div class="button-section">
+        <button mat-raised-button color="primary" (click)="buyTicket()">{{ 'checkout.buyTicketButton' | translate }}</button>
+        <button mat-raised-button color="primary" (click)="reserveTicket()">{{ 'checkout.reserveTicketButton' | translate }}</button>
+    </div>
+</div>

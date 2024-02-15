@@ -1,0 +1,33 @@
+<app-navbar></app-navbar>
+<div class="p-4">
+    <div class="container">
+        <h1>{{'person.title' | translate}}</h1>
+        <form [formGroup]="personForm" (ngSubmit)="addPerson(personForm.value)" class="form-addperson">
+            <mat-form-field appearance="fill">
+                <mat-label>{{'person.firstNameLabel' | translate}}</mat-label>
+                <input type="text" matInput formControlName="firstName" placeholder="First name" [readonly]="isFieldsDisabled">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>{{'person.lastNameLabel' | translate}}</mat-label>
+                <input type="text" matInput formControlName="lastName" placeholder="Last name" [readonly]="isFieldsDisabled">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>{{'person.emailLabel' | translate}}</mat-label>
+                <input type="text" matInput formControlName="email" placeholder="Email" [readonly]="isFieldsDisabled">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>{{'person.phoneNumberLabel' | translate}}</mat-label>
+                <input type="text" matInput formControlName="phoneNumber" placeholder="Phone number" [readonly]="isFieldsDisabled">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>{{'person.birthDateLabel' | translate}}</mat-label>
+                <input type="date" matInput formControlName="birthDate" placeholder="Birth date" [readonly]="isFieldsDisabled">
+            </mat-form-field>
+
+            <div class="buttons-container">
+                <button mat-raised-button color="primary" type="submit">{{'person.saveButton' | translate}}</button>
+                <button  type="button" mat-raised-button color="primary" (click)="toggleFields()">{{'person.editButton' | translate}}</button>
+            </div>
+        </form>
+    </div>
+</div>

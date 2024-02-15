@@ -1,0 +1,78 @@
+<h2 mat-dialog-title>{{ 'ticketBooking.dialogTitle' | translate }}</h2>
+<mat-dialog-content>
+  <form [formGroup]="buyTicketForm" (ngSubmit)="buyTicket()">
+    <h3>{{ 'ticketBooking.flightDetailsTitle' | translate }}</h3>
+    <p>{{ 'ticketBooking.flightNameLabel' | translate }}: {{ data.flight.name }}</p>
+    <p>{{ 'ticketBooking.arrivalCityLabel' | translate }}: {{ data.flight.arrivalCity }}</p>
+    <p>{{ 'ticketBooking.departureCityLabel' | translate }}: {{ data.flight.departureCity }}</p>
+    <p>{{ 'ticketBooking.nrOfPassengersLabel' | translate }}: {{ data.nrOfPassengers }}</p>
+    <div *ngIf="data.nrOfPassengers > 0">
+      <div formArrayName="passengers">
+        <div *ngFor="let passenger of passengers.controls; let i = index;">
+          <div [formGroupName]="i">
+            <mat-error
+              *ngIf="getPassengerControl(i, 'firstName')?.invalid && getPassengerControl(i, 'firstName')?.touched && data.nrOfPassengers > 0">
+              <span *ngIf="getPassengerControl(i, 'firstName')?.errors?.required">{{ 'ticketBooking.firstNameRequired' |
+                translate }}</span>
+            </mat-error>
+            <mat-form-field appearance="fill">
+              <input matInput formControlName="firstName"
+                placeholder="{{ 'ticketBooking.firstNamePlaceholder' | translate }} {{ i + 1 }}" required
+                [hidden]="data.nrOfPassengers === 0">
+            </mat-form-field>
+            <mat-error
+              *ngIf="getPassengerControl(i, 'lastName')?.invalid && getPassengerControl(i, 'lastName')?.touched && data.nrOfPassengers > 0">
+              <span *ngIf="getPassengerControl(i, 'lastName')?.errors?.required">{{ 'ticketBooking.lastNameRequired' |
+                translate }}</span>
+            </mat-error>
+            <mat-form-field appearance="fill">
+              <input matInput formControlName="lastName"
+                placeholder="{{ 'ticketBooking.lastNamePlaceholder' | translate }} {{ i + 1 }}" required
+                [hidden]="data.nrOfPassengers === 0">
+            </mat-form-field>
+            <mat-error
+              *ngIf="getPassengerControl(i, 'email')?.invalid && getPassengerControl(i, 'email')?.touched && data.nrOfPassengers > 0">
+              <span *ngIf="getPassengerControl(i, 'email')?.errors?.required">{{ 'ticketBooking.emailRequired' |
+                translate }}</span>
+              <span *ngIf="getPassengerControl(i, 'email')?.errors?.email">{{ 'ticketBooking.emailInvalid' | translate
+                }}</span>
+            </mat-error>
+            <mat-form-field appearance="fill">
+              <input matInput formControlName="email"
+                placeholder="{{ 'ticketBooking.emailPlaceholder' | translate }} {{ i + 1 }}" required
+                [hidden]="data.nrOfPassengers === 0">
+            </mat-form-field>
+            <mat-error
+              *ngIf="getPassengerControl(i, 'phoneNumber')?.invalid && getPassengerControl(i, 'phoneNumber')?.touched && data.nrOfPassengers > 0">
+              <span *ngIf="getPassengerControl(i, 'phoneNumber')?.errors?.required">{{ 'ticketBooking.phoneRequired' |
+                translate }}</span>
+              <span *ngIf="getPassengerControl(i, 'phoneNumber')?.errors?.pattern">{{ 'ticketBooking.phoneInvalid' |
+                translate }}</span>
+            </mat-error>
+            <mat-form-field appearance="fill">
+              <input matInput formControlName="phoneNumber"
+                placeholder="{{ 'ticketBooking.phonePlaceholder' | translate }} {{ i + 1 }}" required
+                [hidden]="data.nrOfPassengers === 0">
+            </mat-form-field>
+            <button mat-button type="button" (click)="removePassenger(i)" *ngIf="passengers.length > 0"
+              [hidden]="data.nrOfPassengers === 0">{{ 'ticketBooking.removePassengerButton' | translate }}</button>
+          </div>
+        </div>
+      </div>
+      <button mat-button type="button" (click)="addPassenger()" [disabled]="maxPassengersReached"
+        [hidden]="data.nrOfPassengers === 0">{{ 'ticketBooking.addPassengerButton' | translate }}</button>
+    </div>
+    <mat-form-field>
+      <mat-label>{{ 'ticketBooking.ticketTypeLabel' | translate }}</mat-label>
+      <mat-select formControlName="ticketType">
+        <mat-option value="Business">{{ 'ticketBooking.businessTicket' | translate }}</mat-option>
+        <mat-option value="Economy">{{ 'ticketBooking.economyTicket' | translate }}</mat-option>
+        <mat-option value="First class">{{ 'ticketBooking.firstClassTicket' | translate }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button class="btn btn-sm btn-primary btn-block" type="submit">{{ 'ticketBooking.buyTicketButton' | translate }}</button>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+</mat-dialog-actions>

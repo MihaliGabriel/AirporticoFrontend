@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>{{ 'updateairplane.updateTitle' | translate }}</h2>
+<mat-dialog-content>
+  <form [formGroup]="updateForm">
+    <mat-form-field>
+      <input matInput formControlName="id" placeholder="{{'updateairplane.idLabel' | translate}}" readonly>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="name" placeholder="{{'updateairplane.nameLabel' | translate}}">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="columns" placeholder="{{'updateairplane.columnsLabel' | translate}}">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="rows" placeholder="{{'updateairplane.rowsLabel' | translate}}">
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">{{'actions.cancelButton' | translate}}</button>
+  <button mat-button (click)="onSave()">{{'actions.saveButton' | translate}}</button>
+</mat-dialog-actions>

@@ -1,0 +1,43 @@
+<mat-dialog>
+    <mat-dialog-title style="font-weight: bold; font-size: 20px;">Please select seats for passengers</mat-dialog-title>
+    <mat-dialog-content *ngIf="seatMap.length && seatMap[0].length">
+        <mat-accordion>
+            <!-- For the buyer -->
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Passenger: {{ data.buyer.firstName }} {{ data.buyer.lastName }}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-card-content>
+                    <div class="seat-row" *ngFor="let row of rows">
+                        <div class="seat" *ngFor="let col of columns" [class.already-selected]="isSeatSelected(row, col)" [class.selected]="isSelectedBuyer(row, col)" (click)="toggleSeatBuyer(row, col)">
+                            {{ row }}{{ columnToLetter(col) }}
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-expansion-panel>
+
+           
+            <mat-expansion-panel *ngFor="let passenger of data.passengers">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Passenger: {{ passenger.firstName }} {{ passenger.lastName }}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-card-content>
+                    <div class="seat-row" *ngFor="let row of rows">
+                        <div class="seat" *ngFor="let col of columns" [class.already-selected]="isSeatSelected(row, col)" [class.selected]="isSelected(passenger, row, col)" (click)="toggleSeat(passenger, row, col)">
+                            {{ row }}{{ columnToLetter(col) }}
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-expansion-panel>
+        </mat-accordion>
+        
+        <div class="save-button">
+            <button mat-raised-button color="accent" (click)="save()">Select seats</button>
+            <button mat-raised-button (click)="onCancel()">Close</button>
+        </div>
+    </mat-dialog-content>
+</mat-dialog>

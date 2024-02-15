@@ -1,0 +1,19 @@
+
+.navbar-nav {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+.custom-navbar {
+    background-color: rgba(30, 50, 138, 0.8);
+  }
+  
+  .custom-link,
+  .nav-item.nav-link { /* Apply the color to all navbar links */
+    color: rgb(255, 255, 255);
+  }
+  
+  .language-select {
+    color: rgb(255, 255, 255);
+  }

@@ -1,0 +1,44 @@
+<!-- Page Content -->
+<div class="header-banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="container box">
+          <div class="row">
+            <div class="col-12">
+              <form [formGroup]="formData" (ngSubmit)="onClickSubmit()" class="form-signin">
+                <mat-error>{{ errorMessage }}</mat-error>
+                <mat-error>{{ emailSentMessage }}</mat-error>
+                <div>
+                  <mat-error *ngIf="(loginButtonClicked || forgotPasswordClicked) && getLoginControl('username').invalid">
+                    <span *ngIf="getLoginControl('username').hasError('required')">{{ 'loginPage.usernameRequiredError' | translate }}</span>
+                  </mat-error>
+                  <label for="username">{{ 'loginPage.usernameLabel' | translate }}</label>
+                  <input type="text" id="username" class="form-control" formControlName="username" placeholder="{{ 'loginPage.usernameLabel' | translate }}"
+                    required autofocus>
+                </div>
+                <mat-error *ngIf="loginButtonClicked && getLoginControl('password').invalid">
+                  <span *ngIf="getLoginControl('password').hasError('required')">{{ 'loginPage.passwordRequiredError' | translate }}</span>
+                </mat-error>
+                <label for="inputPassword">{{ 'loginPage.passwordLabel' | translate }}</label>
+                <input type="password" id="inputPassword" class="form-control" formControlName="password"
+                  placeholder="{{ 'loginPage.passwordLabel' | translate }}" required>
+                <button class="nav-item nav-link custom-link" type="submit">{{ 'loginPage.signInButton' | translate }}</button>
+                <a routerLink="../register" class="nav-item nav-link custom-link">{{ 'loginPage.registerLink' | translate }}</a>
+                <button class="nav-item nav-link custom-link" type="button"
+                  (click)="resetPassword(formData.value.username)">{{ 'loginPage.forgotPasswordButton' | translate }}</button>
+              </form>
+              <input type="checkbox" [(ngModel)]="isChecked">{{ 'loginPage.twoFactorAuthentication' | translate }}
+            </div>
+            <div class = "language-select">
+              <label for="languageSelect">{{'general.selectlanguagenavbar' | translate}} </label>
+              <select id="languageSelect" [(ngModel)]="selectedLanguage" (change)="onLanguageChange()">
+                <option *ngFor="let language of supportedLanguages" [value]="language.code">{{ language.name }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

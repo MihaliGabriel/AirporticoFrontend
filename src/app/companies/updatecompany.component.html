@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>Update Company</h2>
+<mat-dialog-content>
+  <form [formGroup]="updateForm">
+    <mat-form-field>
+      <input matInput formControlName="id" placeholder="{{'updateCompany.idLabel' | translate}}" readonly>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="email" placeholder="{{'updateCompany.emailLabel' | translate}}">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="companyName" placeholder="{{'updateCompany.nameLabel' | translate}}">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="companyCode" placeholder="{{'updateCompany.codeLabel' | translate}}">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="phone" placeholder="{{'updateCompany.phoneLabel' | translate}}">
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">{{'actions.cancelButton' | translate}}</button>
+  <button mat-button (click)="onSave()">{{'actions.saveButton' | translate}}</button>
+</mat-dialog-actions>
